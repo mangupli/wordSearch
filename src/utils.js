@@ -1,4 +1,4 @@
-const notFound = 'Слово не найдено';
+const notFound = []; // 'Слово не найдено'
 
 const steps = {
   diagonal: [

@@ -1,10 +1,5 @@
 const { getNeighbors, notFound, steps } = require('./utils');
 
-const testPuzzle = [
-  ['a', 'a', 'a'],
-  ['b', 'b', 'b'],
-];
-
 function dfsUtil(coord, word, nextPosition, puzzle, visited, options) {
   // if all the letters has been found previously
   if (nextPosition === word.length) return true;
@@ -44,19 +39,20 @@ function dfs(coord, word, puzzle, options) {
 // search =  'diagonal' | 'straight' | 'all'
 
 function wordSearch(word, puzzle, options = { search: 'straight' }) {
-  const firstLetter = word[0];
+  if (word && puzzle && word.length > 0) {
+    const firstLetter = word[0];
 
-  for (let i = 0; i < puzzle.length; i++) {
-    for (let j = 0; j < puzzle[i].length; j++) {
-      if (puzzle[i][j] === firstLetter) {
-        const coord = { x: i, y: j };
-        const found = dfs(coord, word, puzzle, options);
-        if (found) return [i, j];
+    for (let i = 0; i < puzzle.length; i++) {
+      for (let j = 0; j < puzzle[i].length; j++) {
+        if (puzzle[i][j] === firstLetter) {
+          const coord = { x: i, y: j };
+          const found = dfs(coord, word, puzzle, options);
+          if (found) return [i, j];
+        }
       }
     }
   }
   return notFound;
 }
-
 
 module.exports = wordSearch;
